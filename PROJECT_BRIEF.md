@@ -10,15 +10,15 @@ Create the official Stardio homepage as a creative stationery-media brand, publi
 - X account handle: @stardio_people (profile URL currently linked as https://x.com/stardio_people)
 
 ## Brand direction
-Editorial, creative, minimal, refined typography, thoughtful motion, stationery media.
-Aim for an independent creative identity rather than a generic corporate template.
+Build a visual family with Studio People: clean white space, quiet blue accents, subtle geometric atmosphere, elegant Bodoni Moda wordmark, restrained motion, and thoughtful Japanese typography. Stardio is the umbrella/activities site, so its structure and messaging should remain distinct from the Studio People media homepage.
 
-## Initial palette
-- Paper: #F5F1E8
-- Ink: #252525
-- Vermilion: #C64B3C
-- Sage: #B9C6B5
-- Rule Gray: #BEB7A9
+## Current palette
+- White: #FFFFFF
+- Ink Blue: #294967
+- Brand Blue: #426791
+- Deep Blue: #315878
+- Soft Blue: #6C8AA5
+- Pale Blue: #EDF3F8
 
 ## Content principles
 - Activities: 人文房具, Studio People, Stardio Official.
@@ -28,7 +28,7 @@ Aim for an independent creative identity rather than a generic corporate templat
 
 ## Implementation
 - Static HTML/CSS/vanilla JavaScript for a low-dependency GitHub Pages site.
-- Responsive navigation, semantic sections, keyboard-visible focus, reduced-motion support.
+- Responsive slide-out navigation, semantic sections, keyboard-visible focus, reduced-motion support.
 - Main sections: Hero, Activities, About, Follow along, Footer.
 - Keep external links secure with target="_blank" and rel="noopener noreferrer" where appropriate.
 
