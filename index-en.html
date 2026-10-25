@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Stardio — A Little More Curiosity.Observe, explore, and think about stationery.人文房具とStudio Peopleをつなぐ活動の公式サイト。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Stardio — A Little More Curiosity.">
+  <meta property="og:description" content="Observe, explore, and think about stationery.">
+  <meta property="og:url" content="https://stardio-corp.github.io/">
+  <title>Stardio — A Little More Curiosity.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:light;--white:#fff;--ink:#243B50;--blue:#48AEE3;--blue-dark:#247BA8;--blue-soft:#48AEE3;--muted:#64798A;--line:rgba(72,174,227,.16);--pale:#F2FAFE;--serif:"Bodoni Moda","Times New Roman",serif;--sans:"Noto Sans JP",sans-serif}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:82px}
+    body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sans);opacity:0;transition:opacity .8s ease;-webkit-font-smoothing:antialiased}
+    body.page-loaded{opacity:1;animation:fadeIn .8s ease both}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(-25deg,rgba(72,174,227,.028) 0,rgba(72,174,227,.028) 1px,transparent 1px,transparent 28px);z-index:-2}
+    body::after{content:"";position:fixed;width:650px;height:650px;top:-280px;right:-10px;background:radial-gradient(circle,rgba(72,174,227,.12) 0%,rgba(72,174,227,.035) 45%,transparent 72%);pointer-events:none;z-index:-1}
+    a{color:inherit;text-decoration:none}
+    a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:5px}
+    ::selection{background:#DDF3FF;color:var(--ink)}
+    .wrap{width:min(1100px,calc(100% - 40px));margin-inline:auto}
+    .eyebrow{font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--blue-soft)}
+    header{position:fixed;top:0;left:0;width:100%;height:76px;background:rgba(255,255,255,.78);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);z-index:10000}
+    .header-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .logo{font-family:var(--serif);font-size:43px;font-weight:400;line-height:1;color:var(--blue);letter-spacing:0;transition:opacity .25s,transform .25s}
+    .logo:hover{opacity:.72;transform:translateY(-1px)}
+    .header-nav{display:flex;align-items:center;justify-content:flex-end;gap:clamp(10px,2.2vw,26px);margin-right:10px;min-width:0}
+    .header-nav a{color:var(--blue-dark);font-size:13px;font-weight:600;letter-spacing:.07em;white-space:nowrap;transition:color .2s,opacity .2s}
+    .header-nav a:hover{color:var(--blue);opacity:.8}
+    main{width:min(1100px,calc(100% - 40px));margin:0 auto;padding-top:76px}
+    .hero{position:sticky;top:76px;z-index:1;min-height:calc(100vh - 76px);padding:110px 20px 92px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+    .hero .eyebrow{margin:0 0 22px;position:relative;z-index:1}
+    .hero h1{position:relative;z-index:1;margin:0;color:var(--ink);font-size:clamp(42px,7vw,78px);line-height:1.35;letter-spacing:.045em;font-weight:700}
+    .hero h1 span{display:inline-block;color:var(--blue)}
+    .hero-description{position:relative;z-index:1;margin:25px 0 0;color:var(--muted);font-size:15px;line-height:2.1;letter-spacing:.05em}
+    .hero-english{position:relative;z-index:1;margin:30px 0 0;font-family:var(--serif);font-size:19px;color:#72BFE8;letter-spacing:.025em}
+    .hero-note{position:absolute;right:18px;bottom:28px;font-family:var(--serif);font-size:12px;letter-spacing:.14em;color:#91CBE8;writing-mode:vertical-rl}
+    .hero > *{opacity:var(--hero-content-opacity,1)}
+    .section{position:relative;z-index:2;padding:58px 30px 76px;background:rgba(255,255,255,.97);border:1px solid rgba(72,174,227,.14);border-radius:24px;box-shadow:0 18px 55px rgba(36,59,80,.07)}
+    #activities{z-index:3;margin-top:-72px;transform:translateY(var(--scroll-offset,0px));will-change:transform}
+    .section-top{display:flex;align-items:flex-start;justify-content:space-between;gap:25px;margin-bottom:24px}
+    .section-top h2{margin:0;color:var(--blue-dark);font-size:clamp(25px,4vw,36px);font-weight:600;letter-spacing:.08em}
+    .section-top .eyebrow{padding-top:10px;white-space:nowrap}
+    .section-intro{margin:12px 0 36px;color:var(--muted);font-size:14px;line-height:2;letter-spacing:.035em}
+    .activity-list{border-top:1px solid var(--line)}
+    .activity{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-height:290px;padding:55px 20px;border-bottom:1px solid var(--line);overflow:hidden;transition:padding .35s}
+    .activity:hover{padding-left:28px}
+    .activity-label{position:relative;z-index:1;margin-bottom:14px;font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--blue-soft)}
+    .activity-heading{position:relative;z-index:1;display:flex;align-items:center;gap:clamp(28px,6vw,84px);width:100%}
+    .activity-title{flex:0 0 auto;margin:0;color:var(--ink);font-size:clamp(34px,5.5vw,58px);font-weight:600;line-height:1.2;letter-spacing:.045em}
+    .activity-description{margin:0;color:#60798A;font-size:14px;line-height:2;letter-spacing:.035em}
+    .activity-link{position:relative;z-index:1;display:inline-flex;align-items:center;gap:22px;margin-top:25px;padding:12px 0;color:var(--blue);font-size:14px;font-weight:600;letter-spacing:.04em;border-bottom:1px solid rgba(72,174,227,.4);transition:gap .25s,color .25s}
+    .activity-link span{font-size:17px}
+    .activity:hover .activity-link{gap:29px;color:var(--ink)}
+    .about{margin-top:28px;padding-top:58px;padding-bottom:78px}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:start;margin-top:38px}
+    .about-statement{margin:0;color:var(--ink);font-size:clamp(25px,3.6vw,42px);line-height:1.8;letter-spacing:.035em;font-weight:500}
+    .about-statement span{color:var(--blue)}
+    .about-copy{margin:5px 0 26px;color:var(--muted);font-size:14px;line-height:2.2;letter-spacing:.025em}
+    .quote-panel{position:relative;min-height:190px;padding:28px 30px;background:rgba(237,243,248,.65);border:1px solid rgba(72,174,227,.1);border-radius:18px;overflow:hidden}
+    .quote-panel::after{content:"";position:absolute;width:140px;height:140px;right:-40px;bottom:-60px;border:1px solid rgba(72,174,227,.12);border-radius:50%}
+    .quote-panel blockquote{margin:24px 0 0;font-family:var(--serif);font-size:clamp(25px,3.5vw,39px);line-height:1.3;color:var(--blue-dark)}
+    .contact{position:relative;z-index:2;margin:28px 0 0;padding:58px 30px 64px;background:rgba(255,255,255,.97);border:1px solid rgba(72,174,227,.14);border-radius:24px;box-shadow:0 18px 55px rgba(36,59,80,.07)}
+    .contact-inner{display:flex;align-items:flex-end;justify-content:space-between;gap:30px}
+    .contact h2{margin:12px 0 0;color:var(--ink);font-size:clamp(34px,6vw,62px);font-weight:500;letter-spacing:.025em}
+    .contact-link{display:inline-flex;align-items:center;gap:24px;padding:14px 0;border-bottom:1px solid rgba(72,174,227,.4);font-size:13px;font-weight:600;color:var(--blue-dark);white-space:nowrap;transition:gap .25s}
+    .contact-link span{font-size:19px;color:var(--blue)}
+    .contact-link:hover{gap:30px}
+    footer{width:min(1100px,calc(100% - 40px));margin:0 auto;padding:28px 20px 42px;border-top:1px solid rgba(72,174,227,.1);color:#91A9B9;font-size:11px;letter-spacing:.08em}
+    .footer-row{display:flex;align-items:flex-start;flex-direction:column;gap:12px}
+    .footer-logo{font-family:var(--serif);font-size:29px;color:var(--blue)}
+    .footer-small{font-size:10px;margin-top:18px}
+    .footer-links{display:flex;flex-direction:column;align-items:flex-start;gap:10px;flex-wrap:wrap}
+    .footer-links a{transition:color .2s}
+    .footer-links a:hover{color:var(--blue-dark)}
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .75s ease,transform .75s ease}
+    .reveal.is-visible{opacity:1;transform:translateY(0)}
+    @media(max-width:650px){
+      .wrap,main,footer{width:calc(100% - 28px)}
+      header,.header-inner{height:68px}
+      .header-inner{width:calc(100% - 28px);gap:10px}
+      .logo{font-size:34px}
+      .header-nav{gap:clamp(7px,2vw,12px);margin-right:6px;flex-shrink:0}
+      .header-nav a{font-size:10px;letter-spacing:0}
+      main{padding-top:68px}
+      .hero{top:68px;min-height:calc(100vh - 68px);padding:80px 8px 65px}
+      .hero h1{font-size:clamp(38px,11vw,55px);line-height:1.45}
+      .hero-description{font-size:13px}
+      .hero-note{right:2px;bottom:20px;font-size:10px}
+      .section{padding:42px 16px 54px;border-radius:19px}
+      #activities{margin-top:-46px}
+      .section-top{flex-direction:column;gap:10px;margin-bottom:18px}
+      .section-top .eyebrow{padding-top:0}
+      .section-intro{font-size:13px;margin-bottom:24px}
+      .activity{min-height:300px;padding:52px 12px}
+      .activity-heading{align-items:flex-start;flex-direction:column;gap:16px}
+      .activity-title{font-size:clamp(32px,9vw,46px)}
+      .activity-description{font-size:13px;line-height:1.9}
+      .about{margin-top:18px;padding-top:42px;padding-bottom:54px}
+      .about-grid{grid-template-columns:1fr;gap:25px;margin-top:28px}
+      .about-copy{font-size:13px}
+      .quote-panel{padding:25px;min-height:175px}
+      .contact{margin-top:18px;padding:42px 16px 48px;border-radius:19px}
+      .contact-inner{align-items:flex-start;flex-direction:column}
+      .contact-link{white-space:normal}
+      .footer-row{align-items:flex-start;flex-direction:column;gap:12px}
+      .footer-links{flex-direction:column;align-items:flex-start;gap:10px}
+    }
+
+    .language-switch{position:absolute;right:20px;bottom:40px;display:flex;align-items:center;gap:9px;font-size:11px;letter-spacing:.08em;font-weight:700}
+    .language-switch a{color:#91A9B9;transition:color .2s}
+    .language-switch a.active{color:var(--blue)}
+    .language-switch .slash{color:#B8C9D4}
+    footer{position:relative;padding-bottom:42px}
+    @media(max-width:650px){.language-switch{right:10px;bottom:40px}}
+
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      body,body.page-loaded,.activity,.activity-link,.reveal{transition:none!important;animation:none!important}
+      body{opacity:1}
+      .reveal{opacity:1;transform:none}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner wrap">
+      <a href="#top" class="logo" aria-label="Stardio ホーム">Stardio</a>
+      <nav class="header-nav" aria-label="メインメニュー">
+        <a href="#top">HOME</a>
+        <a href="#activities">ACTIVITIES</a>
+        <a href="#about">ABOUT</a>
+        <a href="#contact">FOLLOW</a>
+      </nav>
+    </div>
+  </header>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow">STATIONERY &amp; CREATIVE MEDIA</p>
+      <h1 id="hero-title">Stationery,<br><span>a little deeper.</span></h1>
+      <p class="hero-description">Observe, explore, and think about stationery.<br>We share the fascinating world of stationery through our own perspectives.</p>
+      <p class="hero-english">A little more curiosity.</p>
+      <span class="hero-note" aria-hidden="true">STARDIO / CREATIVE ACTIVITIES</span>
+    </section>
+    <section class="section" id="activities" aria-labelledby="activities-title">
+      <div class="section-top reveal">
+        <h2 id="activities-title">Activities</h2>
+        <span class="eyebrow">01 / WHAT WE DO</span>
+      </div>
+      <p class="section-intro reveal">We explore the stories and appeal of stationery through videos and web media.</p>
+      <div class="activity-list">
+        <article class="activity reveal">
+          <span class="activity-label">01 / VIDEO &amp; MEDIA</span>
+          <div class="activity-heading">
+            <h3 class="activity-title">人文房具</h3>
+            <p class="activity-description">Observing, researching, and thinking about stationery.<br>A fresh look at the everyday tools around us.</p>
+          </div>
+          <a class="activity-link" href="https://www.youtube.com/@%E3%81%9D%E3%81%93%E3%82%89%E8%BE%BA%E3%81%AB%E3%81%84%E3%82%8B%E3%81%9F%E3%81%A0%E3%81%AE%E4%BA%BA-Zzz" target="_blank" rel="noopener noreferrer">Explore the project <span aria-hidden="true">↗</span></a>
+        </article>
+        <article class="activity reveal">
+          <span class="activity-label">02 / WEB MAGAZINE</span>
+          <div class="activity-heading">
+            <h3 class="activity-title">Studio People</h3>
+            <p class="activity-description">A web magazine that takes a closer look at stationery and the details that spark our curiosity.</p>
+          </div>
+          <a class="activity-link" href="https://studio-people-jp.github.io/" target="_blank" rel="noopener noreferrer">Visit the website <span aria-hidden="true">↗</span></a>
+        </article>
+        <article class="activity reveal">
+          <span class="activity-label">03 / OFFICIAL CHANNEL</span>
+          <div class="activity-heading">
+            <h3 class="activity-title">Stardio Official</h3>
+            <p class="activity-description">The official Stardio YouTube channel.<br>Discover the world of stationery through video.</p>
+          </div>
+          <a class="activity-link" href="https://www.youtube.com/@stardio-official" target="_blank" rel="noopener noreferrer">Watch on YouTube <span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+    </section>
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="section-top reveal">
+        <h2 id="about-title">About Stardio</h2>
+        <span class="eyebrow">02 / OUR POINT OF VIEW</span>
+      </div>
+      <div class="about-grid">
+        <p class="about-statement reveal">See familiar tools<br>from a new perspective.</p>
+        <div class="reveal">
+          <p class="about-copy">A pen, the texture of paper, a tool you keep reaching for. Stationery has a story beyond its function. Through videos and web media, Stardio explores and shares that appeal from our own point of view.</p>
+          <div class="quote-panel">
+            <span class="eyebrow">A SMALL REMINDER</span>
+            <blockquote>Look closer.<br>Think deeper.</blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="contact-inner">
+        <div>
+          <span class="eyebrow">03 / FOLLOW ALONG</span>
+          <h2 id="contact-title">Stay curious.</h2>
+        </div>
+        <a class="contact-link" href="https://www.youtube.com/@stardio-official" target="_blank" rel="noopener noreferrer">Official YouTube Channel <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-row">
+      <a class="footer-logo" href="#top">Stardio</a>
+      <nav class="footer-links" aria-label="フッターリンク">
+        <a href="https://www.youtube.com/@%E3%81%9D%E3%81%93%E3%82%89%E8%BE%BA%E3%81%AB%E3%81%84%E3%82%8B%E3%81%9F%E3%81%A0%E3%81%AE%E4%BA%BA-Zzz" target="_blank" rel="noopener noreferrer">Jinbun Stationery ↗</a>
+        <a href="https://studio-people-jp.github.io/" target="_blank" rel="noopener noreferrer">Studio People ↗</a>
+        <a href="https://www.youtube.com/@stardio-official" target="_blank" rel="noopener noreferrer">Stardio ↗</a>
+        <a href="https://x.com/stardio_people" target="_blank" rel="noopener noreferrer">Stardio x ↗</a>
+        <a href="company-en.html">About & Careers</a>
+      </nav>
+      <span class="footer-small">© <span id="year">2026</span> stardio</span>
+      <nav class="language-switch" aria-label="Language"><a href="index.html" class="" >JP</a><span class="slash">/</span><a href="index-en.html" class="active" aria-current="page">EN</a></nav>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // As the page scrolls, let the Activities card rise over the hero headline.
+      const activitiesCard = document.getElementById("activities");
+      const hero = document.querySelector(".hero");
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (activitiesCard && !reduceMotion) {
+        let scrollFrame = 0;
+        function slideActivitiesCard() {
+          const mobile = window.matchMedia("(max-width: 650px)").matches;
+          const maxLift = mobile ? 190 : 280;
+          const lift = Math.min(maxLift, Math.max(0, window.scrollY * (mobile ? 0.9 : 1.15)));
+          const fadeDistance = mobile ? 180 : 240;
+          const contentOpacity = Math.max(0, 1 - window.scrollY / fadeDistance);
+          if (hero) hero.style.setProperty("--hero-content-opacity", contentOpacity.toFixed(3));
+          activitiesCard.style.setProperty("--scroll-offset", (-lift) + "px");
+          activitiesCard.style.marginBottom = (-lift) + "px";
+          scrollFrame = 0;
+        }
+        window.addEventListener("scroll", function () {
+          if (!scrollFrame) scrollFrame = requestAnimationFrame(slideActivitiesCard);
+        }, { passive: true });
+        window.addEventListener("resize", slideActivitiesCard);
+        slideActivitiesCard();
+      }
+      requestAnimationFrame(function () { document.body.classList.add("page-loaded"); });
+      if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        document.querySelectorAll(".reveal").forEach(function (el) { observer.observe(el); });
+      } else {
+        document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("is-visible"); });
+      }
+    });
+  </script>
+</body>
+</html>
