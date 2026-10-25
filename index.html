@@ -42,6 +42,7 @@
     .hero-description{position:relative;z-index:1;margin:25px 0 0;color:var(--muted);font-size:15px;line-height:2.1;letter-spacing:.05em}
     .hero-english{position:relative;z-index:1;margin:30px 0 0;font-family:var(--serif);font-size:19px;color:#72BFE8;letter-spacing:.025em}
     .hero-note{position:absolute;right:18px;bottom:28px;font-family:var(--serif);font-size:12px;letter-spacing:.14em;color:#91CBE8;writing-mode:vertical-rl}
+    .hero > *{opacity:var(--hero-content-opacity,1)}
     .section{position:relative;z-index:2;padding:58px 30px 76px;background:rgba(255,255,255,.97);border:1px solid rgba(72,174,227,.14);border-radius:24px;box-shadow:0 18px 55px rgba(36,59,80,.07)}
     #activities{z-index:3;margin-top:-72px;transform:translateY(var(--scroll-offset,0px));will-change:transform}
     .section-top{display:flex;align-items:flex-start;justify-content:space-between;gap:25px;margin-bottom:24px}
@@ -217,6 +218,7 @@
 
       // As the page scrolls, let the Activities card rise over the hero headline.
       const activitiesCard = document.getElementById("activities");
+      const hero = document.querySelector(".hero");
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (activitiesCard && !reduceMotion) {
         let scrollFrame = 0;
@@ -224,6 +226,9 @@
           const mobile = window.matchMedia("(max-width: 650px)").matches;
           const maxLift = mobile ? 190 : 280;
           const lift = Math.min(maxLift, Math.max(0, window.scrollY * (mobile ? 0.9 : 1.15)));
+          const fadeDistance = mobile ? 180 : 240;
+          const contentOpacity = Math.max(0, 1 - window.scrollY / fadeDistance);
+          if (hero) hero.style.setProperty("--hero-content-opacity", contentOpacity.toFixed(3));
           activitiesCard.style.setProperty("--scroll-offset", (-lift) + "px");
           activitiesCard.style.marginBottom = (-lift) + "px";
           scrollFrame = 0;
