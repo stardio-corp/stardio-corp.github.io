@@ -31,7 +31,7 @@
     .header-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
     .logo{font-family:var(--serif);font-size:43px;font-weight:400;line-height:1;color:var(--blue);letter-spacing:0;transition:opacity .25s,transform .25s}
     .logo:hover{opacity:.72;transform:translateY(-1px)}
-    .header-nav{display:flex;align-items:center;justify-content:flex-end;gap:clamp(12px,2.5vw,30px)}
+    .header-nav{display:flex;align-items:center;justify-content:flex-end;gap:clamp(10px,2.2vw,26px);margin-right:10px;min-width:0}
     .header-nav a{color:var(--blue-dark);font-size:13px;font-weight:600;letter-spacing:.07em;white-space:nowrap;transition:color .2s,opacity .2s}
     .header-nav a:hover{color:var(--blue);opacity:.8}
     main{width:min(1100px,calc(100% - 40px));margin:0 auto;padding-top:76px}
@@ -86,7 +86,7 @@
       header,.header-inner{height:68px}
       .header-inner{width:calc(100% - 28px);gap:10px}
       .logo{font-size:34px}
-      .header-nav{gap:clamp(8px,2.4vw,14px)}
+      .header-nav{gap:clamp(7px,2vw,12px);margin-right:6px;flex-shrink:0}
       .header-nav a{font-size:10px;letter-spacing:0}
       main{padding-top:68px}
       .hero{top:68px;min-height:calc(100vh - 68px);padding:80px 8px 65px}
@@ -124,13 +124,13 @@
   <header>
     <div class="header-inner wrap">
       <a href="#top" class="logo" aria-label="Stardio ホーム">Stardio</a>
+      <nav class="header-nav" aria-label="メインメニュー">
+        <a href="#top">HOME</a>
+        <a href="#activities">ACTIVITIES</a>
+        <a href="#about">ABOUT</a>
+        <a href="#contact">FOLLOW</a>
+      </nav>
     </div>
-    <nav class="header-nav" aria-label="メインメニュー">
-      <a href="#top">HOME</a>
-      <a href="#activities">ACTIVITIES</a>
-      <a href="#about">ABOUT</a>
-      <a href="#contact">FOLLOW</a>
-    </nav>
   </header>
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
