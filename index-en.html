@@ -17,7 +17,11 @@
     :root{color-scheme:light;--white:#fff;--ink:#243B50;--blue:#48AEE3;--blue-dark:#247BA8;--blue-soft:#48AEE3;--muted:#64798A;--line:rgba(72,174,227,.16);--pale:#F2FAFE;--serif:"Bodoni Moda","Times New Roman",serif;--sans:"Noto Sans JP",sans-serif}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth;scroll-padding-top:82px}
-    body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sans);opacity:0;transition:opacity .8s ease;-webkit-font-smoothing:antialiased}
+    body{margin:0;background:transparent;color:var(--ink);font-family:var(--sans);opacity:0;transition:opacity .8s ease;-webkit-font-smoothing:antialiased;isolation:isolate}
+    html{background:#fff}
+    body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:#48AEE3;clip-path:circle(calc(var(--cyan-reveal,0) * 160vmax) at 78% 52%);will-change:clip-path}
+    body>*{position:relative;z-index:1}
+    header{z-index:10000}
     body.page-loaded{opacity:1;animation:fadeIn .8s ease both}
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
     body::before{content:none}
@@ -37,7 +41,7 @@
     main{width:min(1100px,calc(100% - 40px));margin:0 auto;padding-top:76px}
     .hero{position:sticky;top:76px;z-index:1;min-height:calc(100vh - 76px);padding:110px 20px 92px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
     .hero::before{content:"S";position:absolute;z-index:1;pointer-events:none;right:0;top:160px;font-family:Arial,Helvetica,sans-serif;font-size:clamp(440px,58vw,660px);font-weight:300;line-height:.78;color:transparent;-webkit-text-stroke:1px rgba(120,130,140,.42);transform:translate(-4%,25%);opacity:var(--s-opacity,1)}.hero::after{content:"S";position:absolute;z-index:1;pointer-events:none;right:0;top:160px;font-family:Arial,Helvetica,sans-serif;font-size:clamp(440px,58vw,660px);font-weight:300;line-height:.78;color:transparent;-webkit-text-stroke:2px rgba(72,174,227,.62);transform:translate(-7%,19%);opacity:calc(.9 * var(--s-opacity,1))}
-    .scroll-cyan-wave{position:absolute;z-index:0;pointer-events:none;width:32vmax;height:32vmax;left:72%;top:48%;border-radius:50%;background:radial-gradient(circle,rgba(72,174,227,.28) 0%,rgba(72,174,227,.18) 28%,rgba(72,174,227,.08) 52%,rgba(72,174,227,0) 72%);transform:translate(-50%,-50%) scale(var(--wave-scale,0));opacity:var(--wave-opacity,0);will-change:transform,opacity}
+    .scroll-cyan-wave{display:none}
     .hero h1{position:relative;z-index:2}
 
     .hero .eyebrow{margin:0 0 22px;position:relative;z-index:2}
@@ -246,11 +250,10 @@
           const fadeDistance = mobile ? 180 : 240;
           const contentOpacity = Math.max(0, 1 - window.scrollY / fadeDistance);
           if (hero) hero.style.setProperty("--hero-content-opacity", contentOpacity.toFixed(3));
-          const waveProgress = Math.min(1, Math.max(0, window.scrollY / (mobile ? 280 : 360)));
+          const waveProgress = Math.min(1, Math.max(0, (window.scrollY - 8) / (mobile ? 300 : 390)));
           if (hero) {
-            hero.style.setProperty("--wave-scale", (0.25 + waveProgress * 8).toFixed(3));
-            hero.style.setProperty("--wave-opacity", (waveProgress * 1.15).toFixed(3));
-            hero.style.setProperty("--s-opacity", Math.max(0, 1 - waveProgress * 1.4).toFixed(3));
+            document.body.style.setProperty("--cyan-reveal", waveProgress.toFixed(3));
+            hero.style.setProperty("--s-opacity", Math.max(0, 1 - waveProgress * 1.25).toFixed(3));
           }
           activitiesCard.style.setProperty("--scroll-offset", (-lift) + "px");
           activitiesCard.style.marginBottom = (-lift) + "px";
