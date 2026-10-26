@@ -243,6 +243,20 @@
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (!reduceMotion) {
         let scrollFrame = 0;
+        let waveProgress = 0;
+        let waveTarget = 0;
+        let waveFrame = 0;
+        function animateWave() {
+          waveProgress += (waveTarget - waveProgress) * 0.12;
+          if (Math.abs(waveTarget - waveProgress) < 0.001) waveProgress = waveTarget;
+          document.body.style.setProperty("--cyan-reveal", waveProgress.toFixed(3));
+          if (hero) hero.style.setProperty("--s-opacity", Math.max(0, 1 - waveProgress * 1.25).toFixed(3));
+          if (Math.abs(waveTarget - waveProgress) > 0.001) {
+            waveFrame = requestAnimationFrame(animateWave);
+          } else {
+            waveFrame = 0;
+          }
+        }
         function slideActivitiesCard() {
           const mobile = window.matchMedia("(max-width: 650px)").matches;
           const maxLift = mobile ? 190 : 280;
@@ -250,10 +264,16 @@
           const fadeDistance = mobile ? 180 : 240;
           const contentOpacity = Math.max(0, 1 - window.scrollY / fadeDistance);
           if (hero) hero.style.setProperty("--hero-content-opacity", contentOpacity.toFixed(3));
-          const waveProgress = Math.min(1, Math.max(0, (window.scrollY - 8) / (mobile ? 300 : 390)));
-          if (hero) {
-            document.body.style.setProperty("--cyan-reveal", waveProgress.toFixed(3));
-            hero.style.setProperty("--s-opacity", Math.max(0, 1 - waveProgress * 1.25).toFixed(3));
+          if (activitiesCard) {
+            const cardTop = activitiesCard.getBoundingClientRect().top;
+            const triggerLine = window.innerHeight * 0.55;
+            const revealDistance = mobile ? window.innerHeight * 0.72 : window.innerHeight * 0.68;
+            waveTarget = Math.min(1, Math.max(0, (triggerLine - cardTop) / revealDistance));
+          } else {
+            waveTarget = 0;
+          }
+          if (!waveFrame && Math.abs(waveTarget - waveProgress) > 0.001) {
+            waveFrame = requestAnimationFrame(animateWave);
           }
           if (activitiesCard) {
             activitiesCard.style.setProperty("--scroll-offset", (-lift) + "px");
