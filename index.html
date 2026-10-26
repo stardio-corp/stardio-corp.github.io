@@ -249,6 +249,7 @@
         let revealTarget = 0;
         let waveFrame = 0;
         let lastScrollY = window.scrollY;
+        let waveTriggered = false;
         function animateWave() {
           waveProgress += (waveTarget - waveProgress) * 0.12;
           revealProgress += (revealTarget - revealProgress) * 0.12;
@@ -273,18 +274,18 @@
           if (activitiesCard) {
             const cardTop = activitiesCard.getBoundingClientRect().top;
             const triggerLine = window.innerHeight * 0.55;
-            const revealDistance = mobile ? window.innerHeight * 0.72 : window.innerHeight * 0.68;
-            const progress = Math.min(1, Math.max(0, (triggerLine - cardTop) / revealDistance));
             const scrollingDown = window.scrollY >= lastScrollY;
-            waveTarget = progress;
-            if (scrollingDown) {
-              revealTarget = Math.max(revealTarget, progress);
-            } else if (progress <= 0.001) {
-              revealTarget = 0;
+            if (scrollingDown && cardTop <= triggerLine) {
+              waveTriggered = true;
+              revealTarget = 1;
+            }
+            if (waveTriggered) {
+              waveTarget = cardTop <= triggerLine ? 1 : 0;
+            } else {
+              waveTarget = 0;
             }
           } else {
             waveTarget = 0;
-            revealTarget = 0;
           }
           lastScrollY = window.scrollY;
           if (!waveFrame && (Math.abs(waveTarget - waveProgress) > 0.001 || Math.abs(revealTarget - revealProgress) > 0.001)) {
