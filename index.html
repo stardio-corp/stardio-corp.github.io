@@ -251,10 +251,11 @@
         let lastScrollY = window.scrollY;
         let waveTriggered = false;
         function animateWave() {
-          waveProgress += (waveTarget - waveProgress) * 0.12;
-          revealProgress += (revealTarget - revealProgress) * 0.12;
-          if (Math.abs(waveTarget - waveProgress) < 0.001) waveProgress = waveTarget;
-          if (Math.abs(revealTarget - revealProgress) < 0.001) revealProgress = revealTarget;
+          // Slow the transition down so the wave is easy to see.
+          waveProgress += (waveTarget - waveProgress) * 0.035;
+          revealProgress += (revealTarget - revealProgress) * 0.035;
+          if (Math.abs(waveTarget - waveProgress) < 0.002) waveProgress = waveTarget;
+          if (Math.abs(revealTarget - revealProgress) < 0.002) revealProgress = revealTarget;
           document.body.style.setProperty("--cyan-opacity", waveProgress.toFixed(3));
           document.body.style.setProperty("--cyan-reveal", revealProgress.toFixed(3));
           if (hero) hero.style.setProperty("--s-opacity", Math.max(0, 1 - waveProgress * 1.25).toFixed(3));
