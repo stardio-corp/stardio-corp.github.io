@@ -36,9 +36,10 @@
     .header-nav a:hover{color:var(--blue);opacity:.8}
     main{width:min(1100px,calc(100% - 40px));margin:0 auto;padding-top:76px}
     .hero{position:sticky;top:76px;z-index:1;min-height:calc(100vh - 76px);padding:110px 20px 92px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-    .hero::before{content:"S";position:absolute;z-index:0;pointer-events:none;right:0;top:160px;font-family:Arial,Helvetica,sans-serif;font-size:clamp(440px,58vw,660px);font-weight:300;line-height:.78;color:transparent;-webkit-text-stroke:1px rgba(120,130,140,.42);transform:translate(-4%,25%);opacity:1}.hero::after{content:"S";position:absolute;z-index:0;pointer-events:none;right:0;top:160px;font-family:Arial,Helvetica,sans-serif;font-size:clamp(440px,58vw,660px);font-weight:300;line-height:.78;color:transparent;-webkit-text-stroke:2px rgba(72,174,227,.62);transform:translate(-7%,19%);opacity:.9}
-    .hero h1{position:relative;z-index:1}
-    .hero .eyebrow{margin:0 0 22px;position:relative;z-index:1}
+    .hero::before{content:"S";position:absolute;z-index:1;pointer-events:none;right:0;top:160px;font-family:Arial,Helvetica,sans-serif;font-size:clamp(440px,58vw,660px);font-weight:300;line-height:.78;color:transparent;-webkit-text-stroke:1px rgba(120,130,140,.42);transform:translate(-4%,25%);opacity:var(--s-opacity,1)}.hero::after{content:"S";position:absolute;z-index:1;pointer-events:none;right:0;top:160px;font-family:Arial,Helvetica,sans-serif;font-size:clamp(440px,58vw,660px);font-weight:300;line-height:.78;color:transparent;-webkit-text-stroke:2px rgba(72,174,227,.62);transform:translate(-7%,19%);opacity:calc(.9 * var(--s-opacity,1))}
+    .scroll-cyan-wave{position:absolute;z-index:0;pointer-events:none;width:32vmax;height:32vmax;left:72%;top:48%;border-radius:50%;background:radial-gradient(circle,rgba(72,174,227,.28) 0%,rgba(72,174,227,.18) 28%,rgba(72,174,227,.08) 52%,rgba(72,174,227,0) 72%);transform:translate(-50%,-50%) scale(var(--wave-scale,0));opacity:var(--wave-opacity,0);will-change:transform,opacity}
+    .hero h1{position:relative;z-index:2}
+    .hero .eyebrow{margin:0 0 22px;position:relative;z-index:2}
     .hero h1{position:relative;z-index:1;margin:0;color:var(--ink);font-size:clamp(42px,7vw,78px);line-height:1.35;letter-spacing:.045em;font-weight:700}
     .hero h1 span{display:inline-block;color:var(--blue)}
     .hero-description{position:relative;z-index:1;margin:25px 0 0;color:var(--muted);font-size:15px;line-height:2.1;letter-spacing:.05em}
@@ -93,7 +94,8 @@
       .header-nav a{font-size:10px;letter-spacing:0}
       main{padding-top:68px}
       .hero{top:68px;min-height:calc(100vh - 68px);padding:80px 8px 65px}
-      .hero::before{right:0;top:105px;font-size:clamp(300px,76vw,390px);-webkit-text-stroke:1px rgba(120,130,140,.4);transform:translate(-2%,25%);opacity:1}.hero::after{right:0;top:105px;font-family:Arial,Helvetica,sans-serif;font-size:clamp(300px,76vw,390px);-webkit-text-stroke:1.5px rgba(72,174,227,.48);opacity:.65;transform:translate(-5%,19%)}
+      .hero::before{right:0;top:105px;font-size:clamp(300px,76vw,390px);-webkit-text-stroke:1px rgba(120,130,140,.4);transform:translate(-2%,25%);opacity:var(--s-opacity,1)}.hero::after{right:0;top:105px;font-family:Arial,Helvetica,sans-serif;font-size:clamp(300px,76vw,390px);-webkit-text-stroke:1.5px rgba(72,174,227,.48);opacity:calc(.65 * var(--s-opacity,1));transform:translate(-5%,19%)}
+      .scroll-cyan-wave{width:45vmax;height:45vmax;left:68%;top:45%}
       .hero h1{font-size:clamp(38px,11vw,55px);line-height:1.45}
 
       .hero-description{font-size:13px}
@@ -147,6 +149,7 @@
   </header>
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
+      <div class="scroll-cyan-wave" aria-hidden="true"></div>
       <p class="eyebrow">STATIONERY &amp; CREATIVE MEDIA</p>
       <h1 id="hero-title">文房具を、<br><span>ちょっと深く。</span></h1>
       <p class="hero-description">文房具を観察して、調べて、考える。<br>それぞれの視点から、文房具の面白さを届けます。</p>
@@ -243,6 +246,12 @@
           const fadeDistance = mobile ? 180 : 240;
           const contentOpacity = Math.max(0, 1 - window.scrollY / fadeDistance);
           if (hero) hero.style.setProperty("--hero-content-opacity", contentOpacity.toFixed(3));
+          const waveProgress = Math.min(1, Math.max(0, window.scrollY / (mobile ? 280 : 360)));
+          if (hero) {
+            hero.style.setProperty("--wave-scale", (0.25 + waveProgress * 8).toFixed(3));
+            hero.style.setProperty("--wave-opacity", (waveProgress * 1.15).toFixed(3));
+            hero.style.setProperty("--s-opacity", Math.max(0, 1 - waveProgress * 1.4).toFixed(3));
+          }
           activitiesCard.style.setProperty("--scroll-offset", (-lift) + "px");
           activitiesCard.style.marginBottom = (-lift) + "px";
           scrollFrame = 0;
