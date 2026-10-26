@@ -81,7 +81,7 @@
     .contact-link{display:inline-flex;align-items:center;gap:24px;padding:14px 0;border-bottom:1px solid rgba(72,174,227,.4);font-size:13px;font-weight:600;color:var(--blue-dark);white-space:nowrap;transition:gap .25s}
     .contact-link span{font-size:19px;color:var(--blue)}
     .contact-link:hover{gap:30px}
-    footer{width:min(1100px,calc(100% - 40px));margin:0 auto;padding:28px 20px 42px;border-top:1px solid rgba(72,174,227,.1);color:#91A9B9;font-size:11px;letter-spacing:.08em}
+    footer{position:relative;width:min(1100px,calc(100% - 40px));min-height:230px;margin:34px auto 0;padding:34px 30px max(46px,env(safe-area-inset-bottom));background:linear-gradient(155deg,rgba(255,255,255,.94),rgba(242,250,254,.96));border:1px solid rgba(72,174,227,.22);border-bottom:0;border-radius:30px 30px 0 0;box-shadow:0 -12px 42px rgba(36,59,80,.055),0 0 0 8px rgba(255,255,255,.22);color:#7893A5;font-size:11px;letter-spacing:.08em;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
     .footer-row{display:flex;align-items:flex-start;flex-direction:column;gap:12px}
     .footer-logo{font-family:var(--serif);font-size:29px;color:var(--blue)}
     .footer-small{font-size:10px;margin-top:18px}
@@ -128,7 +128,6 @@
     .language-switch a{color:#91A9B9;transition:color .2s}
     .language-switch a.active{color:var(--blue)}
     .language-switch .slash{color:#B8C9D4}
-    footer{position:relative;padding-bottom:42px}
     @media(max-width:650px){.language-switch{right:24px;bottom:55px;font-size:14px}}
 
     @media(prefers-reduced-motion:reduce){
