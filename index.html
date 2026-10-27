@@ -87,6 +87,10 @@
     .footer-links{display:flex;flex-direction:column;align-items:flex-start;gap:10px;flex-wrap:wrap}
     .footer-links a{transition:color .2s}
     .footer-links a:hover{color:var(--blue-dark)}
+    .back-to-top{position:fixed;right:clamp(18px,4vw,42px);bottom:clamp(18px,4vw,38px);z-index:9999;display:flex;align-items:center;justify-content:center;width:58px;height:58px;border:1px solid rgba(72,174,227,.42);border-radius:50%;background:rgba(255,255,255,.9);box-shadow:0 8px 26px rgba(36,59,80,.12);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--blue-dark);font-family:var(--serif);font-size:14px;font-weight:500;letter-spacing:.08em;opacity:0;visibility:hidden;transform:translateY(10px);pointer-events:none;transition:opacity .25s,transform .25s,background .25s,color .25s,visibility .25s}
+    .back-to-top.is-visible{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+    .back-to-top:hover{background:var(--blue);color:#fff;transform:translateY(-3px)}
+    @media(prefers-reduced-motion:reduce){.back-to-top{transition:none}}
     .reveal{opacity:0;transform:translateY(16px);transition:opacity .75s ease,transform .75s ease}
     .reveal.is-visible{opacity:1;transform:translateY(0)}
     @media(max-width:650px){
@@ -218,6 +222,7 @@
       </div>
     </section>
   </main>
+  <a class="back-to-top" href="#top" aria-label="ページの先頭へ戻る">TOP</a>
   <footer>
     <div class="footer-row">
       <a class="footer-logo" href="#top">Stardio</a>
@@ -235,6 +240,13 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      const backToTop = document.querySelector(".back-to-top");
+      function updateBackToTop() {
+        if (backToTop) backToTop.classList.toggle("is-visible", window.scrollY > 360);
+      }
+      window.addEventListener("scroll", updateBackToTop, { passive: true });
+      updateBackToTop();
 
       // As the page scrolls, let the Activities card rise over the hero headline.
       const activitiesCard = document.getElementById("activities");
